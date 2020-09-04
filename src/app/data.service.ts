@@ -13,4 +13,7 @@ export class DataService {
   return this.http.get<Note>(`https://localhost:44339/api/Notes/${ID}`);
 }
 
+ getAllNotes(){
+  return this.http.get<Note[]>("https://localhost:44339/api/Notes");
+ }
 }

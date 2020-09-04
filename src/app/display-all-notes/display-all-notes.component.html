@@ -1,0 +1,14 @@
+<div class="displayNotes">
+    <H3>Display all notes</H3>
+    <button (click)="displayNotes()">Display Notes</button>
+
+    <ul>
+        <li *ngFor="let note of notes">
+            <h5>ID:</h5>{{note.id}}
+            <h5>Title:</h5>{{note.title}}
+            <h5>Content:</h5>{{note.text}}
+            <h5>Created:</h5>{{note.created}}
+        </li>
+    </ul>
+
+</div>

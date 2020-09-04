@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { NoteByIdComponent } from './note-by-id/note-by-id.component';
+import { DisplayAllNotesComponent } from './display-all-notes/display-all-notes.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NoteByIdComponent
+    NoteByIdComponent,
+    DisplayAllNotesComponent
   ],
   imports: [
     BrowserModule,
