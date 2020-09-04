@@ -1,0 +1,12 @@
+.notebyid{
+    background-color: aquamarine;
+    width: 300px;
+}
+
+.notebyid input{
+width: 30px;
+}
+
+.alert{
+    color: red;
+}
