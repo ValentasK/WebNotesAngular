@@ -1,0 +1,28 @@
+<!-- //
+//
+//
+//
+//
+//
+//
+// -->
+<div class="form">
+  <h2> Form status: <span
+      [ngClass]="{'valid': noteForm.form.valid,'invalid': !noteForm.form.valid}">{{ noteForm.form.valid }}</span></h2>
+
+  <form #noteForm="ngForm" (ngSubmit)="createNewNote()">
+    <label for="">Title </label>
+    <input type="text" [(ngModel)]="title" name="title" required>
+
+    <label for="">Content</label>
+    <textarea [(ngModel)]="noteContent" name="noteContent" id="" cols="25" rows="10" required></textarea>
+
+    <button type="submit" [disabled]="!noteForm.form.valid" >Create</button>
+
+
+
+
+
+
+  </form>
+</div>

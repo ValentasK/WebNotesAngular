@@ -1,0 +1,18 @@
+.form{
+    padding: 20px;
+    background: lemonchiffon;
+}
+
+.valid{
+    color: greenyellow;
+}
+
+.invalid{
+    color: red;
+}
+
+textarea{
+    resize: none;
+}
+
+
