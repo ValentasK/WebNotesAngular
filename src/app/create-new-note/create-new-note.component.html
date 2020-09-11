@@ -12,10 +12,10 @@
 
   <form #noteForm="ngForm" (ngSubmit)="createNewNote()">
     <label for="">Title </label>
-    <input type="text" [(ngModel)]="title" name="title" required>
+    <input type="text" [(ngModel)]="newNote.title" name="newNote.title" required>
 
     <label for="">Content</label>
-    <textarea [(ngModel)]="noteContent" name="noteContent" id="" cols="25" rows="10" required></textarea>
+    <textarea [(ngModel)]="newNote.text" name="newNote.text" id="" cols="25" rows="10" required></textarea>
 
     <button type="submit" [disabled]="!noteForm.form.valid" >Create</button>
 

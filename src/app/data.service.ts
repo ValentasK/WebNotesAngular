@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Note } from "./Note";
-import { NewNote } from "./NewNote";
+import { Note } from "./DTOs/Note";
+import { NewNote } from "./DTOs/NewNote";
 import { from } from 'rxjs';
 
 @Injectable({
@@ -24,12 +24,8 @@ export class DataService {
   text: ""
 }
 
-createNewNote(note: Note){
- 
-  this.newNote.title = note.title;
-  this.newNote.text = note.text;
-
-  return this.http.post<NewNote>("https://localhost:44339/api/Notes",this.newNote);
+createNewNote(newNote: NewNote){
+  return this.http.post<NewNote>("https://localhost:44339/api/Notes",newNote);
 }
 
 }
