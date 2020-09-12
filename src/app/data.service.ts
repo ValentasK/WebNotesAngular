@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Note } from "./DTOs/Note";
 import { NewNote } from "./DTOs/NewNote";
 import { from } from 'rxjs';
+import { Sorting } from './DTOs/Sorting';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,12 @@ export class DataService {
 
 createNewNote(newNote: NewNote){
   return this.http.post<NewNote>("https://localhost:44339/api/Notes",newNote);
+}
+
+
+
+getSortedNotes(sorting: Sorting){
+  return this.http.get<Note[]>(`https://localhost:44339/api/Notes?searchString=${sorting.searchString}`);
 }
 
 }

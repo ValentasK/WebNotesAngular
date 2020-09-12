@@ -15,4 +15,6 @@ textarea{
     resize: none;
 }
 
-
+#clearButton{
+    margin-left: 20px;
+}

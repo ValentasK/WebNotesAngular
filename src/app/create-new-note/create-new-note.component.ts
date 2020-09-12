@@ -15,31 +15,22 @@ export class CreateNewNoteComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // newNote: Note = {
-  //   id:null,
-  //   title: "",
-  //   text: "",
-  //   created:null
-  // }
-
   newNote: NewNote = {
     title: "",
     text: ""
   }
 
-  //title: string = ""; 
-  //noteContent: string = ""; 
-
   createNewNote(){
-
-    //this.newNote.title = this.title;
-    //this.newNote.text = this.noteContent;
 
     this.data.createNewNote(this.newNote).subscribe(data =>{
       console.log(data);
     })
-
     console.log(this.newNote)
+  }
+
+  clearForm(){
+    this.newNote.text = "";
+    this.newNote.title = "";
   }
 
 }

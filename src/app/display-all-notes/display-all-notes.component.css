@@ -1,4 +1,59 @@
 .displayNotes{
     background-color: bisque;
     width: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 98vh;
 }
+
+ul{
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+    margin-top:55px;
+}
+
+
+
+.noteContainer{
+    background-color: rgb(68, 236, 17);
+    border-radius: 15px;
+    padding: 5px;
+    margin: 5px;
+    
+}
+
+.noteContainer h5 {
+    margin: 0;
+}
+
+
+
+.noteContainer a {
+    text-decoration: none;
+}
+
+.noteContainer a:hover {
+    color: red;
+}
+.noteFunctions{
+    position: fixed;
+    display: flex;
+    
+}
+
+.noteFunctions .functionDiv {
+margin-top: 10px;
+margin-left: 20px;
+}
+
+.searchDiv{
+    position: fixed;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+ 
+.searchDiv input{
+  width: 150px;
+}
+ 

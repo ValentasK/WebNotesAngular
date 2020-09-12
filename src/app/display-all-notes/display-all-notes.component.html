@@ -1,14 +1,19 @@
 <div class="displayNotes">
-    <H3>Display all notes</H3>
-    <button (click)="displayNotes()">Display Notes</button>
-
-    <ul>
-        <li *ngFor="let note of notes">
-            <h5>ID:</h5>{{note.id}}
-            <h5>Title:</h5>{{note.title}}
-            <h5>Content:</h5>{{note.text}}
-            <h5>Created:</h5>{{note.created}}
-        </li>
-    </ul>
-
+  <div class="noteFunctions">
+    <div class="functionDiv"><button (click)="displayNotes()">Refresh</button></div>
+    <div class="functionDiv"><button (click)="newFirst()">New First</button></div>
+    <div class="functionDiv"><button (click)="oldFirst()">Old First</button></div> 
+  </div>
+  <div class="searchDiv">
+    <input type="text" [(ngModel)]="sorting.searchString" id="" placeholder="Search..." (ngModelChange)="Search()">
+  </div>
+  <ul>
+    <li class="noteContainer" *ngFor="let note of notes"><a href="">
+        <!-- <h5>ID: {{note.id}}</h5> -->
+        <h5>Title: {{note.title}}</h5>
+        <h5>Content: {{note.text}}</h5>
+        <h5>Created: {{note.created | date:'dd-LL-yyyy HH:mm:ss'}}</h5>
+      </a>
+    </li>
+  </ul>
 </div>

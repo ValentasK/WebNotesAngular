@@ -10,19 +10,15 @@
   <h2> Form status: <span
       [ngClass]="{'valid': noteForm.form.valid,'invalid': !noteForm.form.valid}">{{ noteForm.form.valid }}</span></h2>
 
-  <form #noteForm="ngForm" (ngSubmit)="createNewNote()">
+  <form #noteForm="ngForm">
     <label for="">Title </label>
     <input type="text" [(ngModel)]="newNote.title" name="newNote.title" required>
 
     <label for="">Content</label>
     <textarea [(ngModel)]="newNote.text" name="newNote.text" id="" cols="25" rows="10" required></textarea>
 
-    <button type="submit" [disabled]="!noteForm.form.valid" >Create</button>
-
-
-
-
-
-
   </form>
+
+  <button (click)="createNewNote()" type="submit" id="submitButton" [disabled]="!noteForm.form.valid">Create</button>
+  <button id="clearButton" (click)="clearForm()">Clear</button>
 </div>
