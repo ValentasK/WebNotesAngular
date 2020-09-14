@@ -31,8 +31,10 @@ createNewNote(newNote: NewNote){
 
 
 
+
+
 getSortedNotes(sorting: Sorting){
-  return this.http.get<Note[]>(`https://localhost:44339/api/Notes?searchString=${sorting.searchString}&searchDate=${sorting.searchDate}`);
+  return this.http.get<Note[]>(`https://localhost:44339/api/Notes?searchString=${sorting.searchString}&searchDate=${sorting.searchDate}&sortNotesBy=${sorting.sortBy}`);
 }
 
 }

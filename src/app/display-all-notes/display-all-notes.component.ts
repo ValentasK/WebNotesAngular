@@ -27,13 +27,15 @@ export class DisplayAllNotesComponent implements OnInit {
   notes: Note[];
   sorting: Sorting = {
     searchString : "",
-    searchDate : ""
+    searchDate : "",
+    sortBy: ""
   }
   
   displayNotes() {
 
     this.sorting.searchString = "";  // reset the values 
     this.sorting.searchDate = "";   // reset the values 
+    this.sorting.sortBy = "";
     this.data.getAllNotes().subscribe(data => {  // get notes form the service
       console.log(data);
       this.notes = data;
@@ -42,23 +44,9 @@ export class DisplayAllNotesComponent implements OnInit {
     })
   };
 
-  newFirst() {
-    this.notes.sort((a, b) => {
-      return b.id - a.id;
-    })
-    console.log(this.notes);
-  }
-
-  oldFirst() {
-    this.notes.sort((a, b) => {
-      return a.id - b.id
-    })
-    console.log(this.notes);
-  }
-
 
   Search(){
-    console.log(this.sorting.searchString);
+    console.log(this.sorting);
 
     this.data.getSortedNotes(this.sorting).subscribe(data =>{
       this.notes = data;
@@ -66,5 +54,53 @@ export class DisplayAllNotesComponent implements OnInit {
       console.log(this.notes);
     })
   }
+
+  orderByTitle(){
+     
+     if(this.sorting.sortBy ==="" ){
+       this.sorting.sortBy = "title_asc";
+       this.Search();     
+     }
+     else if (this.sorting.sortBy ==="title_asc" ){
+       this.sorting.sortBy = "title_desc";
+       this.Search();      
+     }
+     else{
+       this.sorting.sortBy = "title_asc";
+       this.Search();   
+     }
+  }
+
+  orderByContent(){
+     
+    if(this.sorting.sortBy ==="" ){
+      this.sorting.sortBy = "text_asc";
+      this.Search();     
+    }
+    else if (this.sorting.sortBy ==="text_asc" ){
+      this.sorting.sortBy = "text_desc";
+      this.Search();      
+    }
+    else{
+      this.sorting.sortBy = "text_asc";
+      this.Search();   
+    }
+ }
+
+ orderByDate(){
+     
+  if(this.sorting.sortBy ==="" ){
+    this.sorting.sortBy = "date_asc";
+    this.Search();     
+  }
+  else if (this.sorting.sortBy ==="date_asc" ){
+    this.sorting.sortBy = "date_desc";
+    this.Search();      
+  }
+  else{
+    this.sorting.sortBy = "date_asc";
+    this.Search();   
+  }
+}
   
 }

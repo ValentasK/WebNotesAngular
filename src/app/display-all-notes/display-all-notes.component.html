@@ -1,12 +1,16 @@
 <div class="displayNotes">
   <div class="noteFunctions">
     <div class="functionDiv"><button (click)="displayNotes()">Refresh</button></div>
-    <div class="functionDiv"><button (click)="newFirst()">New First</button></div>
-    <div class="functionDiv"><button (click)="oldFirst()">Old First</button></div> 
   </div>
   <div class="searchDiv">
     <input type="text" [(ngModel)]="sorting.searchString" id="" placeholder="Search..." (ngModelChange)="Search()">
     <input class="dateInput" [(ngModel)]="sorting.searchDate" (ngModelChange)="Search()" type="date">
+  </div>
+  <div class="sorting">
+    <H4>Sort by: </H4>
+    <div class="functionDiv"><button (click)="orderByTitle()">Title</button></div>
+    <div class="functionDiv"><button (click)="orderByContent()" >Content</button></div>
+    <div class="functionDiv"><button (click)="orderByDate()" >Date</button></div> 
   </div>
   <ul>
     <li class="noteContainer" *ngFor="let note of notes"><a href="">

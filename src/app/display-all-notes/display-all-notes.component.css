@@ -10,7 +10,7 @@ ul{
     list-style-type: none;
     padding: 10px;
     margin: 0;
-    margin-top:55px;
+    margin-top:85px;
 }
 
 
@@ -56,5 +56,17 @@ margin-left: 20px;
 }
  
 .dateInput{
+    margin-left: 20px;
+}
+
+.sorting{
+    padding-left: 20px;
+    position: fixed;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.sorting div {
     margin-left: 20px;
 }
