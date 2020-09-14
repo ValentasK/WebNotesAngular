@@ -26,13 +26,15 @@ export class DisplayAllNotesComponent implements OnInit {
 
   notes: Note[];
   sorting: Sorting = {
-    searchString : ""
+    searchString : "",
+    searchDate : ""
   }
   
-
-
   displayNotes() {
-    this.data.getAllNotes().subscribe(data => {
+
+    this.sorting.searchString = "";  // reset the values 
+    this.sorting.searchDate = "";   // reset the values 
+    this.data.getAllNotes().subscribe(data => {  // get notes form the service
       console.log(data);
       this.notes = data;
 

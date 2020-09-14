@@ -1,3 +1,4 @@
 export interface Sorting {
-   searchString: string;
+   searchString: string,
+   searchDate: string
 }

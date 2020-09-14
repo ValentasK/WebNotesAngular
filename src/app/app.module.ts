@@ -10,6 +10,7 @@ import { DisplayAllNotesComponent } from './display-all-notes/display-all-notes.
 import { CreateNewNoteComponent } from './create-new-note/create-new-note.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -6,13 +6,14 @@
   </div>
   <div class="searchDiv">
     <input type="text" [(ngModel)]="sorting.searchString" id="" placeholder="Search..." (ngModelChange)="Search()">
+    <input class="dateInput" [(ngModel)]="sorting.searchDate" (ngModelChange)="Search()" type="date">
   </div>
   <ul>
     <li class="noteContainer" *ngFor="let note of notes"><a href="">
         <!-- <h5>ID: {{note.id}}</h5> -->
         <h5>Title: {{note.title}}</h5>
         <h5>Content: {{note.text}}</h5>
-        <h5>Created: {{note.created | date:'dd-LL-yyyy HH:mm:ss'}}</h5>
+        <h5>Created: {{note.created | date:'dd/LL/yyyy HH:mm:ss'}}</h5>
       </a>
     </li>
   </ul>
