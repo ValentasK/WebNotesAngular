@@ -37,36 +37,35 @@ ul{
 }
 .noteFunctions{
     position: fixed;
-    display: flex;
+    width: 310px;
 }
 
-.noteFunctions .functionDiv {
-margin-top: 10px;
-margin-left: 20px;
+.refresh{
+    padding: 10px 10px;
 }
 
 .searchDiv{
-    position: fixed;
-    margin-top: 40px;
-    margin-left: 20px;
+    display: flex;
 }
- 
+
+.searchDiv div{
+    margin: auto;
+}
 .searchDiv input{
   width: 125px;
-}
- 
-.dateInput{
-    margin-left: 20px;
+  
 }
 
 .sorting{
-    padding-left: 20px;
-    position: fixed;
-    margin-top: 50px;
     display: flex;
-    align-items: center;
+    margin-top: 10px;
+}
+
+.sorting span{
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .sorting div {
-    margin-left: 20px;
+   margin: auto;
 }

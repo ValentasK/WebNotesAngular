@@ -1,17 +1,24 @@
 <div class="displayNotes">
+
   <div class="noteFunctions">
-    <div class="functionDiv"><button (click)="displayNotes()">Refresh</button></div>
+    <div class="refresh"><button (click)="displayNotes()">Refresh</button></div>
+    <div class="searchDiv">
+      <div>
+        <input type="text" [(ngModel)]="sorting.searchString" id="" placeholder="Search..." (ngModelChange)="Search()">
+      </div>
+      <div>
+        <input  [(ngModel)]="sorting.searchDate" (ngModelChange)="Search()" type="date">
+      </div>
+    </div>
+    <div class="sorting">
+      <div><span>Sort by:</span></div>
+      <div ><button (click)="orderByTitle()">Title</button></div>
+      <div ><button (click)="orderByContent()" >Content</button></div>
+      <div ><button (click)="orderByDate()" >Date</button></div> 
+    </div>
   </div>
-  <div class="searchDiv">
-    <input type="text" [(ngModel)]="sorting.searchString" id="" placeholder="Search..." (ngModelChange)="Search()">
-    <input class="dateInput" [(ngModel)]="sorting.searchDate" (ngModelChange)="Search()" type="date">
-  </div>
-  <div class="sorting">
-    <H4>Sort by: </H4>
-    <div class="functionDiv"><button (click)="orderByTitle()">Title</button></div>
-    <div class="functionDiv"><button (click)="orderByContent()" >Content</button></div>
-    <div class="functionDiv"><button (click)="orderByDate()" >Date</button></div> 
-  </div>
+
+
   <ul>
     <li class="noteContainer" *ngFor="let note of notes"><a href="">
         <!-- <h5>ID: {{note.id}}</h5> -->
