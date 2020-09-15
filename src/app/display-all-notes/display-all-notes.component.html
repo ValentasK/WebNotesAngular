@@ -70,12 +70,13 @@
 
 
   <ul class="notesConainer">
-    <li class="noteContainer" *ngFor="let note of notes.notes" (click)="openUpdate(note)">
-      <div>
-        <div *ngIf="note.id == currentNote ">
+    <li class="noteContainer" *ngFor="let note of notes.notes">
+      <div (click)="openUpdate(note)">
+        <div *ngIf="note.id == currentNote">
           <form #noteForm="ngForm">
             <div class="noteTitle">
-              <input type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title" required placeholder="Title...">
+              <input type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title" required
+                placeholder="Title...">
             </div>
             <div class="noteContent">
               <textarea [(ngModel)]="updatedNote.text" name="updatedNote.text" cols="30" rows="2" required
@@ -83,10 +84,17 @@
             </div>
           </form>
         </div>
-        <!-- <h5>ID: {{note.id}}</h5> -->
-        <h5>Title: {{note.title}}</h5>
-        <h5>Content: {{note.text}}</h5>
-        <h5>Created: {{note.created | date:'dd/LL/yyyy HH:mm:ss'}}</h5>
+        <div *ngIf="!(note.id == currentNote)">
+          <!-- <h5>ID: {{note.id}}</h5> -->
+          <h5>Title: {{note.title}}</h5>
+          <h5>Content: {{note.text}}</h5>
+          <h5>Created: {{note.created | date:'dd/LL/yyyy HH:mm:ss'}}</h5>
+        </div>
+
+
+      </div>
+      <div class="closeButton" *ngIf="note.id == currentNote">
+        <button (click)="closeUpadateNote()">Close</button>
       </div>
     </li>
   </ul>

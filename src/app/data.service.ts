@@ -6,6 +6,7 @@ import { from } from 'rxjs';
 import { Sorting } from './DTOs/Sorting';
 import { Notes } from "./DTOs/Notes"
 import { stringify } from '@angular/compiler/src/util';
+import { UpdateNote } from './DTOs/updateNote';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +32,8 @@ createNewNote(newNote: NewNote){
   return this.http.post<NewNote>("https://localhost:44339/api/Notes",newNote);
 }
 
-updateNote(note: Note){
- return this.http.put(`https://localhost:44339/api/Notes?id=${note.id}`,note);
+updateNote(note: UpdateNote){
+ return this.http.put(`https://localhost:44339/api/Notes/${note.id}`,note);
  
 }
 

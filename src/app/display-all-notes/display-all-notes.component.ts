@@ -53,6 +53,8 @@ export class DisplayAllNotesComponent implements OnInit {
     this.sorting.sortBy = ""; // reset the values 
     this.sorting.itemsPerPage = 10; // reset the values 
     this.sorting.currentPage = 1; // reset the values 
+    this.currentNote = 0;
+    this.updating = false;
     this.data.getAllNotes().subscribe(data => { // get notes form the service
       console.log(data);
       this.notes = data;
@@ -151,7 +153,7 @@ createNewNote(){
     console.log(data);                      // once new note is creted then request 
     this.createNewNoteWindow = false;       // is sent to display new notes
     this.clearForm();
-    this.displayNotes() ;
+    this.displayNotes();
   })
 
 
@@ -167,23 +169,47 @@ clearForm(){
 //////////////// Update Note //////////////////
 
 currentNote: number = 0;
+updating: boolean = false;
 
 updatedNote: UpdateNote = {
   id :0,
   title: "",
-  text: ""
+  text: "",
+  created: null
 }
 
 openUpdate(note: Note){
-  this.currentNote = note.id;
-  this.updatedNote.id = note.id;
-  this.updatedNote.text = note.text;
-  this.updatedNote.title = note.title;
+
+  if(!this.updating){
+    this.updating = true;
+    this.currentNote = note.id;
+    this.updatedNote.id = note.id;
+    this.updatedNote.text = note.text;
+    this.updatedNote.title = note.title;
+    this.updatedNote.created = note.created;
+    console.log(this.currentNote);
+
+  }
+ 
 }
 
-updaNote(note: Note){
+closeUpadateNote(){
+  this.currentNote = 0;
+  this.updating = false;
+  console.log(this.currentNote);
+
+  this.updaNote(this.updatedNote);
+
+  this.updatedNote.id = 0;
+  this.updatedNote.text = "";
+  this.updatedNote.title = "";
+}
+
+updaNote(note: UpdateNote){
+  console.log("Updated note:", note);
   this.data.updateNote(note).subscribe(data =>{
     console.log(data);
+    this.displayNotes();
   })
 }
 
