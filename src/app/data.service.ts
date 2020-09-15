@@ -31,7 +31,10 @@ createNewNote(newNote: NewNote){
   return this.http.post<NewNote>("https://localhost:44339/api/Notes",newNote);
 }
 
-
+updateNote(note: Note){
+ return this.http.put(`https://localhost:44339/api/Notes?id=${note.id}`,note);
+ 
+}
 
 
 

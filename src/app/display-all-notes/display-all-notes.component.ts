@@ -17,6 +17,7 @@ import {
 import {
   Notes
 } from "../DTOs/Notes";
+import { UpdateNote } from "../DTOs/updateNote";
 
 @Component({
   selector: 'app-display-all-notes',
@@ -27,11 +28,16 @@ export class DisplayAllNotesComponent implements OnInit {
 
   constructor(private data: DataService) {}
 
+  displayTotal : boolean = false;
+
   ngOnInit(): void {
     this.displayNotes();
+    this.displayTotal = true;
   }
 
   notes: Notes;
+  
+
   sorting: Sorting = {
     searchString: "",
     searchDate: "",
@@ -123,7 +129,62 @@ export class DisplayAllNotesComponent implements OnInit {
    this.Search();
  }
 
+ //////////////////// New Note /////////////
+
+ createNewNoteWindow : boolean = false;
+ newNote: NewNote = {
+  title: "",
+  text: ""
+}
+
+openForm(){
+  this.createNewNoteWindow = true;
+}
+
+closeForm(){
+  this.createNewNoteWindow = false;
+}
+
+createNewNote(){
+
+  this.data.createNewNote(this.newNote).subscribe(data =>{
+    console.log(data);                      // once new note is creted then request 
+    this.createNewNoteWindow = false;       // is sent to display new notes
+    this.clearForm();
+    this.displayNotes() ;
+  })
 
 
+
+}
+
+clearForm(){
+  this.newNote.text = "";
+  this.newNote.title = "";
+}
+
+
+//////////////// Update Note //////////////////
+
+currentNote: number = 0;
+
+updatedNote: UpdateNote = {
+  id :0,
+  title: "",
+  text: ""
+}
+
+openUpdate(note: Note){
+  this.currentNote = note.id;
+  this.updatedNote.id = note.id;
+  this.updatedNote.text = note.text;
+  this.updatedNote.title = note.title;
+}
+
+updaNote(note: Note){
+  this.data.updateNote(note).subscribe(data =>{
+    console.log(data);
+  })
+}
 
 }

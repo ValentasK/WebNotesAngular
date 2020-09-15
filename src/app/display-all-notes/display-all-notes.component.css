@@ -13,8 +13,132 @@
   margin-top: 120px;
 }
 
+.noteFunctions {
+  position: fixed;
+  width: 310px;
+  margin-left: 7px;
+}
+
+.refresh {
+  padding: 10px 10px;
+  display: flex;
+}
+
+.total {
+  margin-left: 10px;
+  font-weight: 900;
+}
+
+/* /////////////////////// New Note ////////////////// */
+
+.newNote {
+  margin-left: 10px;
+}
+
+.newNote button{
+    border: solid greenyellow 2px;
+    
+}
+
+.form{
+    width: 325px;
+    height: 98vh;
+    position: fixed;
+    background-color: rgba(10, 195, 219, 0.7);
+}
+
+.formButtons{
+    margin-left: 20px;
+}
+
+.formButtons button{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.noteTitle{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.noteContent{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.valid{
+    color: greenyellow;
+}
+
+.invalid{
+    color: red;
+}
+
+/* /////////////////////// Search ////////////////// */
+
+.searchDiv {
+  display: flex;
+}
+
+.searchDiv div {
+  margin: auto;
+}
+
+.searchDiv input {
+  width: 125px;
+
+}
+
+/* /////////////////////// Sorting ////////////////// */
+.sorting {
+  display: flex;
+  margin-top: 10px;
+}
+
+.sorting span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sorting div {
+  margin: auto;
+}
+
+/* /////////////////////// Pagination ////////////////// */
+
+.pagination {
+  display: flex;
+  margin-top: 10px;
+
+}
+
+
+.showItems {
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+.itemsPerPage {
+  margin-left: 10px;
+}
+
+.paginationButtons {
+  display: flex;
+  margin-left: 10px;
+}
+
+.paginationButtons div {
+  margin-left: 10px;
+}
+
+.paginationButtons div button {
+  width: 37px;
+}
+
+/* /////////////// Note card /////////// */
+
 .noteContainer {
-  background-color: rgb(68, 236, 17);
+  background-color: rgba(68, 236, 17,0.7);
   border-radius: 15px;
   padding: 5px;
   margin: 5px;
@@ -32,74 +156,3 @@
   color: red;
 }
 
-.noteFunctions {
-  position: fixed;
-  width: 310px;
-  margin-left: 7px;
-}
-
-.refresh {
-  padding: 10px 10px;
-  display: flex;
-}
-
-.total{
-    margin-left: 10px;
-    font-weight: 900;
-}
-
-
-.searchDiv {
-  display: flex;
-}
-
-.searchDiv div {
-  margin: auto;
-}
-
-.searchDiv input {
-  width: 125px;
-
-}
-
-.sorting {
-  display: flex;
-  margin-top: 10px;
-}
-
-.sorting span {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.sorting div {
-  margin: auto;
-}
-
-.pagination {
-    display: flex;
-    margin-top: 10px;
-  
-  }
-  
-
-  .showItems{
-      margin-left: 10px;
-      font-weight: 700;
-  }
-  .itemsPerPage {
-    margin-left: 10px;
-  }
-  
-  .paginationButtons{
-      display: flex;
-      margin-left: 10px;
-  }
-
-  .paginationButtons div{
-    margin-left: 10px;
-}
-
-.paginationButtons div button{
-    width: 37px;
-}
