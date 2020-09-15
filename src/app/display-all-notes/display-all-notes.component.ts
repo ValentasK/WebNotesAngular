@@ -8,8 +8,15 @@ import {
 import {
   Note
 } from "../DTOs/Note";
-import {NewNote} from "../DTOs/NewNote";
-import { Sorting } from "../DTOs/Sorting";
+import {
+  NewNote
+} from "../DTOs/NewNote";
+import {
+  Sorting
+} from "../DTOs/Sorting";
+import {
+  Notes
+} from "../DTOs/Notes";
 
 @Component({
   selector: 'app-display-all-notes',
@@ -24,83 +31,99 @@ export class DisplayAllNotesComponent implements OnInit {
     this.displayNotes();
   }
 
-  notes: Note[];
+  notes: Notes;
   sorting: Sorting = {
-    searchString : "",
-    searchDate : "",
-    sortBy: ""
+    searchString: "",
+    searchDate: "",
+    sortBy: "",
+    itemsPerPage:10,
+    currentPage : 1
   }
-  
+
   displayNotes() {
 
-    this.sorting.searchString = "";  // reset the values 
-    this.sorting.searchDate = "";   // reset the values 
-    this.sorting.sortBy = "";
-    this.data.getAllNotes().subscribe(data => {  // get notes form the service
+    this.sorting.searchString = ""; // reset the values 
+    this.sorting.searchDate = ""; // reset the values 
+    this.sorting.sortBy = ""; // reset the values 
+    this.sorting.itemsPerPage = 10; // reset the values 
+    this.sorting.currentPage = 1; // reset the values 
+    this.data.getAllNotes().subscribe(data => { // get notes form the service
       console.log(data);
       this.notes = data;
-
-
     })
   };
 
 
-  Search(){
+  Search() {
+
+    //this.sorting.currentPage = 1;
     console.log(this.sorting);
 
-    this.data.getSortedNotes(this.sorting).subscribe(data =>{
+    this.data.getSortedNotes(this.sorting).subscribe(data => {
       this.notes = data;
-
       console.log(this.notes);
     })
   }
 
-  orderByTitle(){
-     
-     if(this.sorting.sortBy ==="" ){
-       this.sorting.sortBy = "title_asc";
-       this.Search();     
-     }
-     else if (this.sorting.sortBy ==="title_asc" ){
-       this.sorting.sortBy = "title_desc";
-       this.Search();      
-     }
-     else{
-       this.sorting.sortBy = "title_asc";
-       this.Search();   
-     }
+  orderByTitle() {
+
+    if (this.sorting.sortBy === "") {
+      this.sorting.sortBy = "title_asc";
+      this.Search();
+    } else if (this.sorting.sortBy === "title_asc") {
+      this.sorting.sortBy = "title_desc";
+      this.Search();
+    } else {
+      this.sorting.sortBy = "title_asc";
+      this.Search();
+    }
   }
 
-  orderByContent(){
-     
-    if(this.sorting.sortBy ==="" ){
+  orderByContent() {
+
+    if (this.sorting.sortBy === "") {
       this.sorting.sortBy = "text_asc";
-      this.Search();     
-    }
-    else if (this.sorting.sortBy ==="text_asc" ){
+      this.Search();
+    } else if (this.sorting.sortBy === "text_asc") {
       this.sorting.sortBy = "text_desc";
-      this.Search();      
-    }
-    else{
+      this.Search();
+    } else {
       this.sorting.sortBy = "text_asc";
-      this.Search();   
+      this.Search();
     }
+  }
+
+  orderByDate() {
+
+    if (this.sorting.sortBy === "") {
+      this.sorting.sortBy = "date_asc";
+      this.Search();
+    } else if (this.sorting.sortBy === "date_asc") {
+      this.sorting.sortBy = "date_desc";
+      this.Search();
+    } else {
+      this.sorting.sortBy = "date_asc";
+      this.Search();
+    }
+  }
+
+ /////////// pagination /////////////
+
+ pageUp(){
+   if(this.sorting.currentPage < (this.notes.totalRecords / this.sorting.itemsPerPage)){
+    this.sorting.currentPage = this.sorting.currentPage + 1;
+   }
+   this.Search();
  }
 
- orderByDate(){
-     
-  if(this.sorting.sortBy ==="" ){
-    this.sorting.sortBy = "date_asc";
-    this.Search();     
-  }
-  else if (this.sorting.sortBy ==="date_asc" ){
-    this.sorting.sortBy = "date_desc";
-    this.Search();      
-  }
-  else{
-    this.sorting.sortBy = "date_asc";
-    this.Search();   
-  }
-}
-  
+ pageDown(){
+  if(this.sorting.currentPage > 1){
+    this.sorting.currentPage = this.sorting.currentPage - 1;
+   }
+   this.Search();
+ }
+
+
+
+
 }

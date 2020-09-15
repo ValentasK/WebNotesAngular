@@ -1,26 +1,52 @@
-<div class="displayNotes">
+<div class="Container">
 
   <div class="noteFunctions">
-    <div class="refresh"><button (click)="displayNotes()">Refresh</button></div>
+    <div class="refresh">
+      <div><button (click)="displayNotes()">Refresh</button></div>
+      <div class="total"> Total Records: {{ notes.totalRecords }} </div>
+    </div>
+
     <div class="searchDiv">
       <div>
         <input type="text" [(ngModel)]="sorting.searchString" id="" placeholder="Search..." (ngModelChange)="Search()">
       </div>
       <div>
-        <input  [(ngModel)]="sorting.searchDate" (ngModelChange)="Search()" type="date">
+        <input [(ngModel)]="sorting.searchDate" (ngModelChange)="Search()" type="date">
       </div>
     </div>
     <div class="sorting">
       <div><span>Sort by:</span></div>
-      <div ><button (click)="orderByTitle()">Title</button></div>
-      <div ><button (click)="orderByContent()" >Content</button></div>
-      <div ><button (click)="orderByDate()" >Date</button></div> 
+      <div><button (click)="orderByTitle()">Title</button></div>
+      <div><button (click)="orderByContent()">Content</button></div>
+      <div><button (click)="orderByDate()">Date</button></div>
+    </div>
+
+    <div class="pagination">
+      <div class="showItems">Show Items</div>
+      <div class="itemsPerPage"><select [(ngModel)]="sorting.itemsPerPage" (ngModelChange)="Search()">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+      <div class="paginationButtons">
+        <div><button (click)="pageDown()">
+            <<</button> </div> <div><button>{{ sorting.currentPage }}</button></div>
+        <div><button (click)="pageUp()">>></button></div>
+      </div>
+
     </div>
   </div>
 
 
-  <ul>
-    <li class="noteContainer" *ngFor="let note of notes"><a href="">
+
+  <ul class="notesConainer">
+    <li class="noteContainer" *ngFor="let note of notes.notes"><a href="">
         <!-- <h5>ID: {{note.id}}</h5> -->
         <h5>Title: {{note.title}}</h5>
         <h5>Content: {{note.text}}</h5>
@@ -28,4 +54,5 @@
       </a>
     </li>
   </ul>
+
 </div>

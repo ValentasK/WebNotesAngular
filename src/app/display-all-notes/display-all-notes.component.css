@@ -1,71 +1,105 @@
-.displayNotes{
-    background-color: bisque;
-    width: 330px;
-    overflow: scroll;
-    overflow-x: hidden;
-    height: 98vh;
+.Container {
+  background-color: bisque;
+  width: 340px;
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 98vh;
 }
 
-ul{
-    list-style-type: none;
-    padding: 10px;
-    margin: 0;
-    margin-top:85px;
+.notesConainer {
+  list-style-type: none;
+  padding: 10px;
+  margin: 0;
+  margin-top: 120px;
 }
 
-
-
-.noteContainer{
-    background-color: rgb(68, 236, 17);
-    border-radius: 15px;
-    padding: 5px;
-    margin: 5px;
-    
+.noteContainer {
+  background-color: rgb(68, 236, 17);
+  border-radius: 15px;
+  padding: 5px;
+  margin: 5px;
 }
 
 .noteContainer h5 {
-    margin: 0;
+  margin: 0;
 }
 
-
 .noteContainer a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .noteContainer a:hover {
-    color: red;
-}
-.noteFunctions{
-    position: fixed;
-    width: 310px;
+  color: red;
 }
 
-.refresh{
-    padding: 10px 10px;
+.noteFunctions {
+  position: fixed;
+  width: 310px;
+  margin-left: 7px;
 }
 
-.searchDiv{
-    display: flex;
+.refresh {
+  padding: 10px 10px;
+  display: flex;
 }
 
-.searchDiv div{
-    margin: auto;
+.total{
+    margin-left: 10px;
+    font-weight: 900;
 }
-.searchDiv input{
+
+
+.searchDiv {
+  display: flex;
+}
+
+.searchDiv div {
+  margin: auto;
+}
+
+.searchDiv input {
   width: 125px;
-  
+
 }
 
-.sorting{
-    display: flex;
-    margin-top: 10px;
+.sorting {
+  display: flex;
+  margin-top: 10px;
 }
 
-.sorting span{
-    font-size: 20px;
-    font-weight: bold;
+.sorting span {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .sorting div {
-   margin: auto;
+  margin: auto;
+}
+
+.pagination {
+    display: flex;
+    margin-top: 10px;
+  
+  }
+  
+
+  .showItems{
+      margin-left: 10px;
+      font-weight: 700;
+  }
+  .itemsPerPage {
+    margin-left: 10px;
+  }
+  
+  .paginationButtons{
+      display: flex;
+      margin-left: 10px;
+  }
+
+  .paginationButtons div{
+    margin-left: 10px;
+}
+
+.paginationButtons div button{
+    width: 37px;
 }
