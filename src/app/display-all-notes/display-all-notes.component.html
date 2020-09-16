@@ -55,7 +55,7 @@
           <input type="text" [(ngModel)]="newNote.title" name="newNote.title" required placeholder="Title...">
         </div>
         <div class="noteContent">
-          <textarea [(ngModel)]="newNote.text" name="newNote.text" cols="30" rows="4" required
+          <textarea [(ngModel)]="newNote.text" name="newNote.text" cols="30" rows="8" required
             placeholder="Note content..."></textarea>
         </div>
       </form>
@@ -75,26 +75,41 @@
         <div *ngIf="note.id == currentNote">
           <form #noteForm="ngForm">
             <div class="noteTitle">
-              <input type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title" required
-                placeholder="Title...">
+              <input class="updateNoteInpute" type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title"
+                required placeholder="Title...">
             </div>
             <div class="noteContent">
-              <textarea [(ngModel)]="updatedNote.text" name="updatedNote.text" cols="30" rows="2" required
-                placeholder="Note content..."></textarea>
+              <textarea class="updateNoteInpute" [(ngModel)]="updatedNote.text" name="updatedNote.text" cols="30"
+                rows="2" required placeholder="Note content..."></textarea>
             </div>
           </form>
         </div>
         <div *ngIf="!(note.id == currentNote)">
+
           <!-- <h5>ID: {{note.id}}</h5> -->
-          <h5>Title: {{note.title}}</h5>
-          <h5>Content: {{note.text}}</h5>
-          <h5>Created: {{note.created | date:'dd/LL/yyyy HH:mm:ss'}}</h5>
+          <div class="noteTitle">
+            <h5 class="textWrap"> {{note.title}}</h5>
+          </div>
+          <div class="noteText">
+            <h5 class="textWrap"> {{note.text}}</h5>
+          </div>
+          <div class="createdData">
+            <div>
+              <h5>{{note.created | date:'dd/LL/yyyy HH:mm:ss'}}</h5>
+            </div>
+          </div>
+
         </div>
 
 
       </div>
-      <div class="closeButton" *ngIf="note.id == currentNote">
-        <button (click)="closeUpadateNote()">Close</button>
+      <div class="updateButtons" *ngIf="note.id == currentNote">
+        <div>
+          <button class="closeButton" (click)="closeUpadateNote()">Close</button>
+        </div>
+        <div>
+          <button class="deleteButton" (click)="deleteNote(note.id)">Delete</button>
+        </div>
       </div>
     </li>
   </ul>

@@ -37,6 +37,10 @@ updateNote(note: UpdateNote){
  
 }
 
+deleteNote(id: Number){
+return this.http.delete(`https://localhost:44339/api/Notes/${id}`);
+}
+
 
 
 getSortedNotes(sorting: Sorting){

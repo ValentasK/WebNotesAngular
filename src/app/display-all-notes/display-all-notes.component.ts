@@ -1,22 +1,9 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
-import {
-  DataService
-} from "../data.service";
-import {
-  Note
-} from "../DTOs/Note";
-import {
-  NewNote
-} from "../DTOs/NewNote";
-import {
-  Sorting
-} from "../DTOs/Sorting";
-import {
-  Notes
-} from "../DTOs/Notes";
+import { Component, OnInit} from '@angular/core';
+import {DataService} from "../data.service";
+import { Note} from "../DTOs/Note";
+import {NewNote} from "../DTOs/NewNote";
+import { Sorting} from "../DTOs/Sorting";
+import {Notes} from "../DTOs/Notes";
 import { UpdateNote } from "../DTOs/updateNote";
 
 @Component({
@@ -210,6 +197,17 @@ updaNote(note: UpdateNote){
   this.data.updateNote(note).subscribe(data =>{
     console.log(data);
     this.displayNotes();
+  })
+}
+
+
+//////////////////// Delete Note ///////////////////
+
+deleteNote(id: number){
+  this.data.deleteNote(id).subscribe(data =>{
+    console.log("Deleted:", data);
+    this.displayNotes();
+
   })
 }
 
