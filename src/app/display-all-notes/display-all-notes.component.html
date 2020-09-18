@@ -56,7 +56,7 @@
         </div>
         <div class="noteContent">
           <textarea [(ngModel)]="newNote.text" name="newNote.text" cols="30" rows="8" required
-            placeholder="Note content..."></textarea>
+            placeholder="Note content..."  ng-change="updateTextArea()"></textarea>
         </div>
       </form>
 
@@ -69,22 +69,25 @@
   </div>
 
 
-  <ul class="notesConainer">
+  <ul class="notesConainer">   
+  
+   
+
     <li class="noteContainer" *ngFor="let note of notes.notes">
-      <div (click)="openUpdate(note)">
+      <div (click)="openUpdate(note)" (click)="updateTextArea()" >
         <div *ngIf="note.id == currentNote">
           <form #noteForm="ngForm">
             <div class="noteTitle">
-              <input class="updateNoteInpute" type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title"
+              <input  class="updateNoteInpute" type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title"
                 required placeholder="Title...">
             </div>
             <div class="noteContent">
-              <textarea class="updateNoteInpute" [(ngModel)]="updatedNote.text" name="updatedNote.text" cols="30"
-                rows="2" required placeholder="Note content..."></textarea>
+              <textarea #textareaRef1  class="updateNoteInpute autoresizing" [(ngModel)]="updatedNote.text" name="updatedNote.text" cols="30"
+                rows="1" required placeholder="Note content..." (input)="updateTextArea()"  ></textarea>             
             </div>
           </form>
         </div>
-        <div *ngIf="!(note.id == currentNote)">
+        <div *ngIf="!(note.id == currentNote)">  
 
           <!-- <h5>ID: {{note.id}}</h5> -->
           <div class="noteTitle">
@@ -100,7 +103,6 @@
           </div>
 
         </div>
-
 
       </div>
       <div class="updateButtons" *ngIf="note.id == currentNote">

@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {DataService} from "../data.service";
 import { Note} from "../DTOs/Note";
 import {NewNote} from "../DTOs/NewNote";
@@ -6,23 +6,41 @@ import { Sorting} from "../DTOs/Sorting";
 import {Notes} from "../DTOs/Notes";
 import { UpdateNote } from "../DTOs/updateNote";
 
+
+
 @Component({
   selector: 'app-display-all-notes',
   templateUrl: './display-all-notes.component.html',
   styleUrls: ['./display-all-notes.component.css']
 })
-export class DisplayAllNotesComponent implements OnInit {
+export class DisplayAllNotesComponent implements AfterViewInit , OnInit {
 
   constructor(private data: DataService) {}
+
+  ngAfterViewInit(): void {
+
+      
+  }
+
+  
+
+
+
+  @ViewChild('textareaRef1') autoresizingRef1: ElementRef; 
+
 
   displayTotal : boolean = false;
 
   ngOnInit(): void {
+    
     this.displayNotes();
     this.displayTotal = true;
   }
 
-  notes: Notes;
+  notes: Notes = {
+    totalRecords: 0,
+    notes: null
+  }
   
 
   sorting: Sorting = {
@@ -43,20 +61,14 @@ export class DisplayAllNotesComponent implements OnInit {
     this.currentNote = 0;
     this.updating = false;
     this.data.getAllNotes().subscribe(data => { // get notes form the service
-      console.log(data);
       this.notes = data;
     })
   };
 
 
   Search() {
-
-    //this.sorting.currentPage = 1;
-    console.log(this.sorting);
-
     this.data.getSortedNotes(this.sorting).subscribe(data => {
       this.notes = data;
-      console.log(this.notes);
     })
   }
 
@@ -136,15 +148,11 @@ closeForm(){
 
 createNewNote(){
 
-  this.data.createNewNote(this.newNote).subscribe(data =>{
-    console.log(data);                      // once new note is creted then request 
+  this.data.createNewNote(this.newNote).subscribe(data =>{      // once new note is creted then request 
     this.createNewNoteWindow = false;       // is sent to display new notes
     this.clearForm();
     this.displayNotes();
   })
-
-
-
 }
 
 clearForm(){
@@ -174,31 +182,34 @@ openUpdate(note: Note){
     this.updatedNote.text = note.text;
     this.updatedNote.title = note.title;
     this.updatedNote.created = note.created;
-    console.log(this.currentNote);
-
   }
- 
 }
 
 closeUpadateNote(){
   this.currentNote = 0;
   this.updating = false;
-  console.log(this.currentNote);
-
   this.updaNote(this.updatedNote);
-
   this.updatedNote.id = 0;
   this.updatedNote.text = "";
   this.updatedNote.title = "";
 }
 
 updaNote(note: UpdateNote){
-  console.log("Updated note:", note);
   this.data.updateNote(note).subscribe(data =>{
-    console.log(data);
     this.displayNotes();
   })
+} 
+
+////////////////// update text area ////////
+
+updateTextArea(){
+
+  console.log("updateTextArea()");
+
+   this.autoresizingRef1.nativeElement.style.height = "auto";
+   this.autoresizingRef1.nativeElement.style.height = `${this.autoresizingRef1.nativeElement.scrollHeight}px`;
 }
+
 
 
 //////////////////// Delete Note ///////////////////

@@ -203,3 +203,9 @@
   font-weight: 700;
   font-size: 14px;
 }
+
+.autoresizing { 
+  display: block;  
+  overflow: hidden;   
+  resize: none;  
+}    
