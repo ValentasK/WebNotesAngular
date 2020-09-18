@@ -27,6 +27,7 @@ export class DisplayAllNotesComponent implements AfterViewInit , OnInit {
 
 
   @ViewChild('textareaRef1') autoresizingRef1: ElementRef; 
+  @ViewChild('textareaRef2') autoresizingRef2: ElementRef; 
 
 
   displayTotal : boolean = false;
@@ -202,12 +203,16 @@ updaNote(note: UpdateNote){
 
 ////////////////// update text area ////////
 
-updateTextArea(){
-
-  console.log("updateTextArea()");
-
+updateTextArea1(){
+  console.log("updateTextArea1()");
    this.autoresizingRef1.nativeElement.style.height = "auto";
    this.autoresizingRef1.nativeElement.style.height = `${this.autoresizingRef1.nativeElement.scrollHeight}px`;
+}
+
+updateTextArea2(){
+  console.log("updateTextArea2()");
+   this.autoresizingRef2.nativeElement.style.height = "auto";
+   this.autoresizingRef2.nativeElement.style.height = `${this.autoresizingRef2.nativeElement.scrollHeight}px`;
 }
 
 

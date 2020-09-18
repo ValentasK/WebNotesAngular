@@ -74,16 +74,18 @@
    
 
     <li class="noteContainer" *ngFor="let note of notes.notes">
-      <div (click)="openUpdate(note)" (click)="updateTextArea()" >
+      <div (click)="openUpdate(note)" (click)="updateTextArea1()" (click)="updateTextArea2()" >
         <div *ngIf="note.id == currentNote">
           <form #noteForm="ngForm">
             <div class="noteTitle">
-              <input  class="updateNoteInpute" type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title"
-                required placeholder="Title...">
+              <!-- <input  class="updateNoteInpute" type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title"
+                required placeholder="Title..."> -->
+                <textarea #textareaRef1  class="updateNoteInpute autoresizing" [(ngModel)]="updatedNote.title" name="updatedNote.title" cols="30"
+                rows="1" required placeholder="Title" (input)="updateTextArea1()"  ></textarea>  
             </div>
             <div class="noteContent">
-              <textarea #textareaRef1  class="updateNoteInpute autoresizing" [(ngModel)]="updatedNote.text" name="updatedNote.text" cols="30"
-                rows="1" required placeholder="Note content..." (input)="updateTextArea()"  ></textarea>             
+              <textarea #textareaRef2  class="updateNoteInpute autoresizing" [(ngModel)]="updatedNote.text" name="updatedNote.text" cols="30"
+                rows="1" required placeholder="Note content..." (input)="updateTextArea2()"  ></textarea>             
             </div>
           </form>
         </div>
