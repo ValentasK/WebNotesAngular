@@ -1,69 +1,117 @@
-.Container {
-  background-color: bisque;
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* /// Component size /// */
+.appSize{
   width: 340px;
+  height: 85vh;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.padding-5{
+  padding: 5px;
+}
+
+.padding-20{
+  padding: 20px;
+}
+
+.button{
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.button:hover {
+  box-shadow: 0 0px 0px 0 rgba(0,0,0,0.24), 0 2px 10px 0 rgba(0,0,0,0.19);
+}
+
+.Container {
+  background-color: rgb(240, 240, 240);
   overflow: scroll;
   overflow-x: hidden;
-  height: 98vh;
+  border: solid 1px black;
 }
 
-.notesConainer {
-  list-style-type: none;
-  padding: 10px;
-  margin: 0;
-  margin-top: 120px;
+.hideScroll{
+  overflow: hidden;
 }
+
+.notesContainer {
+  list-style-type: none;
+  margin: 0;
+  margin-top: 140px;
+}
+
+/* /////////////////// Note Functions //////////////////////// */
 
 .noteFunctions {
+  background-color: rgba(253, 253, 253, 0.9);
+  box-shadow: 0px 5px 5px rgb(200, 200, 200);
   position: fixed;
-  width: 310px;
-  margin-left: 7px;
-  
+  width: 325px;
+  z-index: 2;
+  border-bottom: solid black 1px;
 }
 
-.refresh {
-  padding: 10px 10px;
-  display: flex;
-}
+/* /////// Refresh ////////// */
 
 .total {
-  margin-left: 10px;
   font-weight: 900;
 }
 
-.textWrap{
-  overflow-wrap: break-word;
+/* ///// Search ////////// */
+
+.searchDiv input {
+  width: 125px;
 }
+
+/* ///// Sorting //////// */
+
+.sortBy {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ///// Pagination ////// */
+
+.showItems {
+  font-weight: 700;
+}
+
+.paginationButton{
+  width: 37px;
+}
+
 
 /* /////////////////////// New Note ////////////////// */
 
-.newNote {
-  margin-left: 10px;
+.NewNoteWindow{
+  position: absolute;
+  background-color: rgba(196, 207, 207, 0.7);
+  z-index: 2;
 }
 
-.newNote button{
-    border: solid greenyellow 2px;
-    
-}
 
 .form{
-    width: 325px;
-    height: 98vh;
-    position: fixed;
-    background-color: rgba(10, 195, 219, 0.7);
+    width: 235px;
+    height: 250px;
+    padding-top: 100px;
+    padding-left: 20px;
 }
 
-.formButtons{
-    margin-left: 20px;
-}
 
 .formButtons button{
-    margin-left: 20px;
     margin-bottom: 20px;
 }
 
-
 .noteContent{
-    margin-left: 20px;
     margin-top: 10px;
 }
 
@@ -75,74 +123,17 @@
     color: red;
 }
 
-/* /////////////////////// Search ////////////////// */
-
-.searchDiv {
-  display: flex;
-}
-
-.searchDiv div {
-  margin: auto;
-}
-
-.searchDiv input {
-  width: 125px;
-
-}
-
-/* /////////////////////// Sorting ////////////////// */
-.sorting {
-  display: flex;
-  margin-top: 10px;
-}
-
-.sorting span {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.sorting div {
-  margin: auto;
-}
-
-/* /////////////////////// Pagination ////////////////// */
-
-.pagination {
-  display: flex;
-  margin-top: 10px;
-
-}
-
-
-.showItems {
-  margin-left: 10px;
-  font-weight: 700;
-}
-
-.itemsPerPage {
-  margin-left: 10px;
-}
-
-.paginationButtons {
-  display: flex;
-  margin-left: 10px;
-}
-
-.paginationButtons div {
-  margin-left: 10px;
-}
-
-.paginationButtons div button {
-  width: 37px;
-}
 
 /* /////////////// Note card /////////// */
 
 .noteContainer {
-  background-color: rgba(68, 236, 17,0.7);
-  border-radius: 15px;
+  position: relative;
+  background-color: rgb(255, 255, 250);
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #CCC;
   padding: 5px;
-  margin: 5px;
+  margin: 10px;
+  
 }
 
 .noteContent{
@@ -158,6 +149,10 @@
 .noteText{
   margin-left: 10px;
   margin-top: 5px;
+}
+
+.textWrap{
+  overflow-wrap: break-word;
 }
 
 .createdData{
@@ -183,17 +178,11 @@
 
 /* ////////////////////// update /////////////////// */
 
-.updateButtons{
-  margin-left: 20px;
-  display: flex;
-}
-
 .closeButton{
  background-color: rgb(5, 255, 5);
 }
 
 .deleteButton{
-  margin-left: 20px;
   background-color: rgb(255, 5, 5);
 }
 
@@ -204,8 +193,40 @@
   font-size: 14px;
 }
 
+.updatingNoteCover{
+  position: absolute;
+  background-color: rgba(196, 207, 207, 0.7);
+  z-index: 3;
+}
+
+.z-index4-top{
+  position: relative;
+  z-index: 4;
+  background-color: white;
+  box-shadow: 10px 5px 5px #CCC;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.z-index4-bottom{
+  position: relative;
+  z-index: 4;
+  background-color: white;
+  box-shadow: 10px 5px 5px #CCC;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
+
 .autoresizing { 
   display: block;  
   overflow: hidden;   
   resize: none;  
+  border: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }    
+

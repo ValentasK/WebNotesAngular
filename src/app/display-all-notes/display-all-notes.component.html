@@ -1,30 +1,30 @@
-<div class="Container">
+<div class="Container appSize" [ngClass]="{'hideScroll': updating}">
 
   <div class="noteFunctions">
-    <div class="refresh">
-      <div><button (click)="displayNotes()">Refresh</button></div>
+    <div class="flex-space-between padding-5">
+      <div><button class="button" (click)="resetAll()">Refresh</button></div>
       <div *ngIf="displayTotal" class="total"> Total Records: {{ notes.totalRecords }} </div>
-      <div class="newNote" (click)="openForm()"><button>New Note</button></div>
+      <div  (click)="openForm()"><button class="button">New Note</button></div>
     </div>
 
-    <div class="searchDiv">
+    <div class="flex-space-between padding-5">
       <div>
-        <input type="text" [(ngModel)]="sorting.searchString" id="" placeholder="Search..." (ngModelChange)="Search()">
+        <input type="text" [(ngModel)]="sorting.searchString" id="" placeholder="Search..." (ngModelChange)="Search2()">
       </div>
       <div>
         <input [(ngModel)]="sorting.searchDate" (ngModelChange)="Search()" type="date">
       </div>
     </div>
-    <div class="sorting">
-      <div><span>Sort by:</span></div>
-      <div><button (click)="orderByTitle()">Title</button></div>
-      <div><button (click)="orderByContent()">Content</button></div>
-      <div><button (click)="orderByDate()">Date</button></div>
+    <div class="flex-space-between padding-5">
+      <div><span class="sortBy">Sort by:</span></div>
+      <div><button class="button" (click)="orderByTitle()">Title</button></div>
+      <div><button class="button" (click)="orderByContent()">Content</button></div>
+      <div><button class="button" (click)="orderByDate()">Date</button></div>
     </div>
 
-    <div class="pagination">
+    <div class="flex-space-between padding-5">
       <div class="showItems">Show Items</div>
-      <div class="itemsPerPage"><select [(ngModel)]="sorting.itemsPerPage" (ngModelChange)="Search()">
+      <div><select [(ngModel)]="sorting.itemsPerPage" (ngModelChange)="Search()">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="5">5</option>
@@ -35,63 +35,66 @@
           <option value="100">100</option>
         </select>
       </div>
-      <div class="paginationButtons">
-        <div><button (click)="pageDown()">
-            <<</button> </div> <div><button>{{ sorting.currentPage }}</button></div>
-        <div><button (click)="pageUp()">>></button></div>
+      <div class="flex-space-between">
+        <div><button class="paginationButton" (click)="pageDown()"><<</button> </div>
+        <div><button class="paginationButton">{{ sorting.currentPage }}</button></div>
+        <div><button class="paginationButton" (click)="pageUp()">>></button></div>
       </div>
 
     </div>
   </div>
 
-  <div *ngIf="createNewNoteWindow">
+  <div *ngIf="createNewNoteWindow" class="NewNoteWindow appSize">
     <div class="form">
-      <!-- <h2> Form status: <span
+   
+       <h2> Form status: <span
           [ngClass]="{'valid': noteForm.form.valid,'invalid': !noteForm.form.valid}">{{ noteForm.form.valid }}</span>
-      </h2> -->
+      </h2> 
 
       <form #noteForm="ngForm">
-        <div class="noteTitle">
+        <div>
           <input type="text" [(ngModel)]="newNote.title" name="newNote.title" required placeholder="Title...">
         </div>
-        <div class="noteContent">
+        <div>
           <textarea [(ngModel)]="newNote.text" name="newNote.text" cols="30" rows="8" required
             placeholder="Note content..."  ng-change="updateTextArea()"></textarea>
         </div>
       </form>
 
-      <div class="formButtons">
-        <button (click)="createNewNote()" type="submit" [disabled]="!noteForm.form.valid">Create</button>
-        <button (click)="clearForm()">Clear</button>
-        <button (click)="closeForm()">Close</button>
+      <div class="flex-space-between">
+        <button class="button" (click)="createNewNote()" type="submit" [disabled]="!noteForm.form.valid">Create</button>
+        <button class="button" (click)="clearForm()">Clear</button>
+        <button class="button" (click)="closeForm()">Close</button>
       </div>
+   
     </div>
   </div>
 
+  <div *ngIf="updating" class="updatingNoteCover appSize"></div>
 
-  <ul class="notesConainer">   
+
+  <ul class="notesContainer">   
   
-   
-
     <li class="noteContainer" *ngFor="let note of notes.notes">
       <div (click)="openUpdate(note)" (click)="updateTextArea1()" (click)="updateTextArea2()" >
-        <div *ngIf="note.id == currentNote">
-          <form #noteForm="ngForm">
+        <div *ngIf="note.id == currentNote" class="z-index4">
+          <form #noteForm="ngForm" class="z-index4-top">
             <div class="noteTitle">
               <!-- <input  class="updateNoteInpute" type="text" [(ngModel)]="updatedNote.title" name="updatedNote.title"
                 required placeholder="Title..."> -->
                 <textarea #textareaRef1  class="updateNoteInpute autoresizing" [(ngModel)]="updatedNote.title" name="updatedNote.title" cols="30"
-                rows="1" required placeholder="Title" (input)="updateTextArea1()"  ></textarea>  
+                rows="1" required placeholder="Note title" (input)="updateTextArea1()"  ></textarea>  
             </div>
             <div class="noteContent">
               <textarea #textareaRef2  class="updateNoteInpute autoresizing" [(ngModel)]="updatedNote.text" name="updatedNote.text" cols="30"
                 rows="1" required placeholder="Note content..." (input)="updateTextArea2()"  ></textarea>             
             </div>
           </form>
-        </div>
-        <div *ngIf="!(note.id == currentNote)">  
 
-          <!-- <h5>ID: {{note.id}}</h5> -->
+        </div>
+              
+        <div *ngIf="!(note.id == currentNote)">  
+         <!-- <h5>ID: {{note.id}}</h5> -->
           <div class="noteTitle">
             <h5 class="textWrap"> {{note.title}}</h5>
           </div>
@@ -103,19 +106,38 @@
               <h5>{{note.created | date:'dd/LL/yyyy HH:mm:ss'}}</h5>
             </div>
           </div>
-
         </div>
 
       </div>
-      <div class="updateButtons" *ngIf="note.id == currentNote">
-        <div>
-          <button class="closeButton" (click)="closeUpadateNote()">Close</button>
+
+      <div *ngIf="note.id == currentNote" class="z-index4-bottom">
+      
+        <div class="flex-space-between padding-20">
+          <div>
+            <button  class="button" (click)="closeUpadateNote()">Save</button>
+          </div>
+          <div>
+            <button  class="button" (click)="cancelUpadateNote()">Cancel</button>
+          </div>
+          <div>
+            <button  class="button" (click)="deleteNote(note.id)">Delete</button>
+          </div>
         </div>
-        <div>
-          <button class="deleteButton" (click)="deleteNote(note.id)">Delete</button>
-        </div>
-      </div>
+        
+
+       </div>
+
     </li>
   </ul>
-
 </div>
+
+
+
+
+
+
+
+
+
+
+

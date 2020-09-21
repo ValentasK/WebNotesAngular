@@ -53,7 +53,12 @@ export class DisplayAllNotesComponent implements AfterViewInit , OnInit {
   }
 
   displayNotes() {
+    this.data.getAllNotes().subscribe(data => { // get notes form the service
+      this.notes = data;
+    })
+  };
 
+  resetAll(){
     this.sorting.searchString = ""; // reset the values 
     this.sorting.searchDate = ""; // reset the values 
     this.sorting.sortBy = ""; // reset the values 
@@ -61,10 +66,9 @@ export class DisplayAllNotesComponent implements AfterViewInit , OnInit {
     this.sorting.currentPage = 1; // reset the values 
     this.currentNote = 0;
     this.updating = false;
-    this.data.getAllNotes().subscribe(data => { // get notes form the service
-      this.notes = data;
-    })
-  };
+
+    this.displayNotes();
+  }
 
 
   Search() {
@@ -72,6 +76,15 @@ export class DisplayAllNotesComponent implements AfterViewInit , OnInit {
       this.notes = data;
     })
   }
+
+  Search2() {
+    this.data.getSortedNotes(this.sorting).subscribe(data => {
+      this.notes = data;
+      this.sorting.currentPage = 1; // reset the values 
+    })
+  }
+
+  
 
   orderByTitle() {
 
@@ -184,6 +197,7 @@ openUpdate(note: Note){
     this.updatedNote.title = note.title;
     this.updatedNote.created = note.created;
   }
+  
 }
 
 closeUpadateNote(){
@@ -196,8 +210,9 @@ closeUpadateNote(){
 }
 
 updaNote(note: UpdateNote){
+  this.updating = false;
   this.data.updateNote(note).subscribe(data =>{
-    this.displayNotes();
+    this.Search();
   })
 } 
 
@@ -222,9 +237,18 @@ updateTextArea2(){
 deleteNote(id: number){
   this.data.deleteNote(id).subscribe(data =>{
     console.log("Deleted:", data);
-    this.displayNotes();
+    this.updating = false;
+    this.Search();
 
   })
+}
+
+
+/////////////////////// Cancel Update Note ////////////////////////////
+
+cancelUpadateNote(){
+  this.currentNote = 0;
+  this.updating = false;
 }
 
 }
