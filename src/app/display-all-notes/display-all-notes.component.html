@@ -47,17 +47,21 @@
   <div *ngIf="createNewNoteWindow" class="NewNoteWindow appSize">
     <div class="form">
    
-       <h2> Form status: <span
-          [ngClass]="{'valid': noteForm.form.valid,'invalid': !noteForm.form.valid}">{{ noteForm.form.valid }}</span>
+       <h2 class="formStatus"> 
+          <!-- <span [ngClass]="{'valid': noteForm.form.valid,'invalid': !noteForm.form.valid}">{{ noteForm.form.valid }}</span>  -->
+          <div *ngIf="!noteForm.form.valid" >Enter title and content</div>
+          
       </h2> 
 
+     
       <form #noteForm="ngForm">
         <div>
-          <input type="text" [(ngModel)]="newNote.title" name="newNote.title" required placeholder="Title...">
+          <textarea #textareaRef1 class="newNoteInput1" [(ngModel)]="newNote.title" name="newNote.title"  cols="35" rows="1" required
+          placeholder="Note title..."  (input)="updateTextArea1()"></textarea>
         </div>
         <div>
-          <textarea [(ngModel)]="newNote.text" name="newNote.text" cols="30" rows="8" required
-            placeholder="Note content..."  ng-change="updateTextArea()"></textarea>
+          <textarea #textareaRef2 class="newNoteInput2" [(ngModel)]="newNote.text" name="newNote.text" cols="35" rows="2" required
+            placeholder="Note content..."  (input)="updateTextArea2()"></textarea>
         </div>
       </form>
 
@@ -74,8 +78,12 @@
 
 
   <ul class="notesContainer">   
-  
     <li class="noteContainer" *ngFor="let note of notes.notes">
+
+      <div *ngIf="note.id == currentNote" class="z-index4-top">
+        <div class="close"><button class="button" (click)="cancelUpadateNote()" >&times;</button></div>
+      </div>
+
       <div (click)="openUpdate(note)" (click)="updateTextArea1()" (click)="updateTextArea2()" >
         <div *ngIf="note.id == currentNote" class="z-index4">
           <form #noteForm="ngForm" class="z-index4-top">
